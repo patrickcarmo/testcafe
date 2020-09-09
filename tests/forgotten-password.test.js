@@ -19,6 +19,6 @@ test('User can request new password to be sent to his email', async (tc) => {
   await tc.pressKey('enter');
 
   // Assertions
-  await t.expect(message).contains(email);
-  await t.expect(emailInput.exists).notOk();
+  await tc.expect(message).contains(email);
+  await tc.expect(emailInput.exists).notOk();
 });

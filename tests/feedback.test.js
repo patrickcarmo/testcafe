@@ -21,5 +21,5 @@ test('User can submit feedback via form', async (tc) => {
   await tc.click(submitButton);
 
   // Assertion
-  await t.expect(message).contains('Thank you for your comments');
+  await tc.expect(message).contains('Thank you for your comments');
 });
