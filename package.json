@@ -8,7 +8,10 @@
     "test:chrome": "testcafe chrome",
     "test:chrome:headless": "testcafe chrome:headless",
     "test:chrome:mobile": "testcafe chrome:emulation:device=iphone X ./tests",
-    "test:ie": "testcafe ie"
+    "test:ie": "testcafe ie",
+    "test:chrome:5": "testcafe -c 5 chrome ./tests -s takeOnFails=true",
+    "test:headless:5": "testcafe -c 5 chrome:headless ./tests -s takeOnFails=true",
+    "test:multipleBrowsers": "testcafe chrome,ie,firefox -s takeOnFails=true --disable-page-caching"
   },
   "keywords": [
     "TestCafe",
