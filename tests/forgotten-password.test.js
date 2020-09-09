@@ -4,7 +4,7 @@ fixture('Send forgotten password test').page(
   'http://zero.webappsecurity.com/index.html'
 );
 
-test.only('User can request new password to be sent to his email', async (tc) => {
+test('User can request new password to be sent to his email', async (tc) => {
   // Get selectors
   const signInButton = Selector('#signin_button');
   const linkToPassword = Selector('a').withText('Forgot your password ?');
