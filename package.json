@@ -1,0 +1,24 @@
+{
+  "name": "testcafe-testing",
+  "version": "1.0.0",
+  "description": "Automated testing with Testcafe",
+  "main": "index.js",
+  "scripts": {
+    "test": "testcafe chrome -s takeOnFails=true --disable-page-caching",
+    "test:chrome": "testcafe chrome",
+    "test:chrome:headless": "testcafe chrome:headless",
+    "test:chrome:mobile": "testcafe chrome:emulation:device=iphone X ./tests",
+    "test:ie": "testcafe ie"
+  },
+  "keywords": [
+    "TestCafe",
+    "Testing",
+    "Automation",
+    "E2E"
+  ],
+  "author": "Patrick Carmo",
+  "license": "ISC",
+  "dependencies": {
+    "testcafe": "^1.8.6"
+  }
+}
