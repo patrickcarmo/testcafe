@@ -1,28 +1,32 @@
-import { Selector } from 'testcafe';
-import { login } from '../helpers';
+import { Selector, t } from 'testcafe';
+import NavBar from '../page-objects/components/NavBar';
+import LoginPage from '../page-objects/pages/LoginPage';
+
+const navbar = new NavBar();
+const loginPage = new LoginPage();
 
 fixture('Login Test').page('http://zero.webappsecurity.com/index.html');
 
-test('User cannot login with invalid credentials', async (tc) => {
-  // Selectors
-  const alertError = Selector('.alert.alert-error');
-
+test('User cannot login with invalid credentials', async (t) => {
   // Actions
-  await login('userName', 'password');
+  await t.click(navbar.signInButton);
+  loginPage.loginToApp('invalid username', 'invalid password');
 
   // Assertion
-  await tc.expect(alertError.exists).ok();
+  await t
+    .expect(loginPage.errorMessage.innerText)
+    .contains('Login and/or password are wrong.');
 });
 
-test('User can login into application', async (tc) => {
+test('User can login into application', async (t) => {
   // Selectors
-  const loginForm = Selector('#login_form');
   const accountSummaryTab = Selector('#account_summary_tab');
 
   // Actions
-  await login('username', 'password');
+  await t.click(navbar.signInButton);
+  loginPage.loginToApp('username', 'password');
 
   // Assertion
-  await tc.expect(accountSummaryTab.exists).ok();
-  await tc.expect(loginForm.exists).notOk();
+  await t.expect(accountSummaryTab.exists).ok();
+  await t.expect(loginPage.loginForm.exists).notOk();
 });

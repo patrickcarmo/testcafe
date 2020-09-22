@@ -1,25 +1,20 @@
 import { Selector, t } from 'testcafe';
+import FeedbackPage from '../page-objects/pages/FeedbackPage';
 
+const feedbackPage = new FeedbackPage();
 fixture('Feedback form test').page('http://zero.webappsecurity.com/index.html');
 
-test('User can submit feedback via form', async (tc) => {
-  // Selectors
-  const linkToFeedback = Selector('#feedback');
-  const formName = Selector('#name');
-  const formEmail = Selector('#email');
-  const formSubject = Selector('#subject');
-  const formComment = Selector('#comment');
-  const submitButton = Selector('input').withAttribute('value', 'Send Message');
-  const message = Selector('div').innerText;
-
+test('User can submit feedback via form', async (t) => {
   // Actions
-  await tc.click(linkToFeedback);
-  await tc.typeText(formName, 'NAME', { paste: true });
-  await tc.typeText(formEmail, 'email@random.com', { paste: true });
-  await tc.typeText(formSubject, 'SUBJECT', { paste: true });
-  await tc.typeText(formComment, 'COMMENT', { paste: true });
-  await tc.click(submitButton);
+  await t.click(feedbackPage.linkToFeedback);
+  await t.typeText(feedbackPage.formName, 'NAME', { paste: true });
+  await t.typeText(feedbackPage.formEmail, 'email@random.com', { paste: true });
+  await t.typeText(feedbackPage.formSubject, 'SUBJECT', { paste: true });
+  await t.typeText(feedbackPage.formComment, 'COMMENT', { paste: true });
+  await t.click(feedbackPage.submitButton);
 
   // Assertion
-  await tc.expect(message).contains('Thank you for your comments');
+  await t
+    .expect(feedbackPage.message.innerText)
+    .contains('Thank you for your comments');
 });
